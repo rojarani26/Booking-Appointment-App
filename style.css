@@ -1,0 +1,97 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: url(img_mountains.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container{
+    max-width: 600px;
+    background: rgba(66, 63, 63, 0.915);
+    padding: 28px;
+    margin: 0 28px;
+    border-radius: 10px;
+}
+
+h1{
+    text-align: center;
+    padding-bottom: 15px;
+    color: white;
+}
+
+.title{
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 6px;
+    color: white;
+    border-bottom: solid 2px white;
+}
+
+.main{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 0;
+}
+
+.box{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 15px;
+}
+
+.box label{
+    color: white;
+    font-size: 20px;
+    margin: 5px 0;
+}
+
+.box input{
+    height: 40px;
+    width: 95%;
+    border-radius: 7px;
+    border: 2px solid grey;
+    padding: 0 10px;
+}
+
+.gender{
+    color:white;
+    font-size: 20px;
+}
+
+.category label{
+    padding: 0px 10px;
+}
+
+.category{
+    margin: 10px 0;
+    color: white;
+}
+
+.submit{
+    margin-top: 20px;
+}
+
+.submit input{
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 3px;
+    color: rgb(209, 209, 209);
+    background: rgba(7, 7, 7, 0.7);
+}
+
+.submit input:hover{
+    background: rgba(249, 246, 246, 0.97);
+    color: rgb(13, 0, 0);
+}
