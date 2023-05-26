@@ -1,60 +1,58 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Responsive Registration Form</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>BOOK AN APPOINTMENT</h1>
-      <h2 class="title" >Please fill out the form to make an appointment</h2>
-      <form onsubmit="getValue()">
-        <div class="main">
-          <div class="box">
-            <label for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" placeholder="Enter your First Name"/>
-          </div>
-          <div class="box">
-            <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastname" placeholder="Enter your last name"/>
-          </div>
-          <div class="box">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter Email"/>
-          </div>
-          <div class="box">
-            <label for="phoneNumber">Phone Number</label>
-            <input type="number" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number"/>
-          </div>
-          <div class="box">
-            <label for="date">Date</label>
-            <input type="date" id="date" name="date"/>
-          </div>
-          <div class="box">
-            <label for="time">Time</label>
-            <input type="time" id="time" name="time"/>
-          </div>
-        </div>
-        <div>
-          <span class="gender">Gender</span>
-          <div class="category">
-            <input type="radio" name="gender" id="male">
-            <label for="male">Male</label>
-            <input type="radio" name="gender" id="female">
-            <label for="female">Female</label>
-            <input type="radio" name="gender" id="other">
-            <label for="other">Other</label>
-          </div>
-        </div>
-        <div class="submit">
-          <input type="submit" id="submit" value="Book Now">
-        </div>
-      </form>
-      <p class="output" id="output1"></p>
-    </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="saveToLocalStorage(event)">
+       <label> Name :</label>
+       <input type="text" name="username" id="name">
+       <label>Email Id :</label>
+       <input type="email" name="emailId" id="email">
+       <label>Phone Number :</label>
+       <input type="number" name="phonenumber" id="phonenumber">
+       <button>Submit</button>
+    </form>
 
-    <script src="script.js"></script>
-  </body>
+    <ul id="listOfUsers"></ul>
+
+        <script>
+            function saveToLocalStorage(event){
+                event.preventDefault();
+                const name = event.target.username.value;
+                const email = event.target.emailId.value;
+                const phonenumber = event.target.phonenumber.value;
+                localStorage.setItem('name',name);
+                localStorage.setItem('email',email);
+                localStorage.setItem('phonenumber',phonenumber);
+                const obj = {
+                    name,
+                    email,
+                    phonenumber
+                }
+                localStorage.setItem(obj.email, JSON.stringify(obj))
+                showNewUserOnScreen(obj)
+            }
+            function showNewUserOnScreen(obj){
+                const parentItem = document.getElementById('listOfUsers')
+                const childItem = document.createElement('li')
+                childItem.textContent = obj.name + ' - ' + obj.email + ' - ' + obj.phonenumber
+                
+                const deleteButton = document.createElement('input')
+                deleteButton.type = "button"
+                deleteButton.value = 'Delete'
+                deleteButton.onclick = () => {
+                    localStorage.removeItem(obj.email)
+                    parentItem.removeChild(childItem)
+                }
+                childItem.appendChild(deleteButton)
+                parentItem.appendChild(childItem)
+            }
+        </script>
+    
+    
+</body>
 </html>
